@@ -53,12 +53,15 @@ btn.addEventListener("click", () => {
                 let denominator = ratePlusOne - 1;
 
                 let mortgage = numerator / denominator;
-                h1.textContent = `£${mortgage.toFixed(2).toLocaleString()}`;
-                h3T.textContent = `£${(mortgage * n).toFixed(2).toLocaleString()}`;
+                const formatter = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' });
+
+                h1.textContent = `${formatter.format(mortgage.toFixed(2))}`;
+                h3T.textContent = `${formatter.format((mortgage * n).toFixed(2))}`;
             } else if (radios[i].classList.contains("interestOnly")) {
                 let monthlyInterest = mortgageInput.value * r;
-                h1.textContent = `£${(monthlyInterest.toFixed(2)).toLocaleString()}`;
-                h3T.textContent = `£${(monthlyInterest * n).toFixed(2).toLocaleString()}`;
+                const formatter = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' });
+                h1.textContent = `${formatter.format((monthlyInterest.toFixed(2)))}`;
+                h3T.textContent = `${formatter.format((monthlyInterest * n).toFixed(2))}`;
             }
             break; // Exit loop after finding the checked radio
         }
